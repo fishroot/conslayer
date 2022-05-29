@@ -1,0 +1,15 @@
+Please implement the following game in Python. The code (and, if you choose, docs and/or tests) should meet your professional standards, as if it were a task at work. If possible, do not try to guess what we "want to see", just solve the problem as you think best. Also, don't spend any time on a nice user experience -- ugly is ok (in particular, overlapping output and input messages on the console are allowed), and you don't need more features than the ones given below. Use any packages you like. Spend around two hours; if it would take you much longer, stop and instead write a brief explanation of your plan for the rest (in comments or a separate freeform text).
+
+The player controls a hero who fights two monsters: an orc and a dragon.
+The hero has 40 health points, the orc has 7, the dragon has 20.
+Every 1500ms, the orc attacks the hero for 1 damage, which means that the hero loses 1 health point.
+Every 2000ms, the dragon attacks the hero for 3 damage.
+Each time the player types "attack orc" or "attack dragon", the hero attacks the corresponding monster for 2 damage.
+If the orc's or dragon's health points are reduced to zero, it is dead and can neither attack nor be attacked.
+If both monsters die, the player wins the game.
+If the hero's health points are reduced to zero, the player loses the game.
+Display text messages on the console to keep the player informed when something happens, e.g. "Hero hits orc. Orc health is 3". Don't include a GUI.
+
+Choose one of the following to implement:
+* The game waits for the player to enter a command, then processes any monster attacks that occurred in the time since the previous player command. For example, if the player attacks for the first time after 2.9s, the orc would attack once. If the player attacks again 1.6s later (4.5s after the beginning of the game) the orc would attack twice more.
+* The game displays monster attacks as they occur, without waiting for the player.
