@@ -2,14 +2,14 @@
 """Console Slayer.
 
 Description:
-    Console Slayer (conslayer) is a simple console-based hack and slay game.
-    The player is a hero that has to kill monsters by using console commands.
+    Console Slayer (conslayer) is a simple console-based hack and slash game.
+    The player commands a hero to kill monsters by using console commands.
 
 """
 __version__ = '1.0.0'
 __status__ = 'Development'
-__description__ = 'Console based hack and slay arena game'
-__license__ = 'GPLv3'
+__description__ = 'Console based hack and slash game'
+__license__ = 'MIT'
 __author__ = 'Patrick Michl'
 __email__ = 'patrick.michl@gmail.com'
 __maintainer__ = 'Patrick Michl'
