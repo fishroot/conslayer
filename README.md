@@ -1,7 +1,9 @@
 # Console Slayer
-*Console Slayer* (`conslayer`) is a simplistic console-based [hack and slay](https://de.wikipedia.org/wiki/Hack_and_Slay) game.
+*Console Slayer* (conslayer) is a simplistic console-based [hack and shash](https://en.wikipedia.org/wiki/Hack_and_slash) game.
 
 ## Getting Started
+Console Slayer runs on [Python](https://www.python.org) 3.7 or above. To install:
+
 ```bash
 $ git clone https://github.com/fishroot/conslayer.git
 $ pip install ./conslayer
@@ -26,7 +28,4 @@ Available commands:
   'help': Show this help message
   'about': Show application version
   'exit': Exit the game
-> about
-Console Slayer v1.0.0
->
 ```
