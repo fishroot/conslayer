@@ -29,3 +29,14 @@ Available commands:
   'about': Show application version
   'exit': Exit the game
 ```
+
+## Testing
+
+```bash
+$ git clone https://github.com/fishroot/conslayer.git
+$ pip install ./conslayer
+$ cd ./conslayer/tests
+$ python arena.test.py
+$ python combatant.test.py
+$ python console.test.py
+```

@@ -1,17 +1,30 @@
+# -*- coding: utf-8 -*-
+# Copyright (C) 2022 Patrick Michl
+# This file is part of Console Slayer, https://github.com/fishroot/conslayer
+"""Arena management."""
+
+__copyright__ = '2022 Patrick Michl'
+__license__ = 'MIT'
+__docformat__ = 'google'
+__author__ = 'Patrick Michl'
+__email__ = 'patrick.michl@gmail.com'
+__authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
+
 from typing import Dict, Iterator, List, Optional, OrderedDict
 
 import reactivex as rx
 import conslayer
 
 class Arena(rx.subject.BehaviorSubject):
-    """
-    Arena Class.
+    """Arena Class.
 
     Description:
         Administer the states of combatants and publish global state changes.
 
     Attributes:
         state (readonly, OrderedDict): Global state of all combatants.
+        heroes (readonly, OrderedDict): All heroes in arena.
+        monsters (readonly, OrderedDict): All monsters in arena.
 
     Design Patterns:
         Singleton, Registry, Behaviour Subject
@@ -46,13 +59,13 @@ class Arena(rx.subject.BehaviorSubject):
             if isinstance(combatant, conslayer.Monster)
         ]
 
-    def __new__(cls):
+    def __new__(cls) -> 'Arena':
         if cls.__instance is None:
             cls.__instance = super(Arena, cls).__new__(cls)
 
         return cls.__instance
 
-    def __init__(self):
+    def __init__(self) -> None:
         if not self.__initialized:
             super(Arena, self).__init__(self.state)
             conslayer.MessageQueue().queue("Welcome to the arena! Type 'help' for more information.")
@@ -61,6 +74,19 @@ class Arena(rx.subject.BehaviorSubject):
 
     def __getstate__(self) -> List[dict]:
         return [combatant.state for combatant in self.__registry.values()]
+
+    def __contains__(self, name: str) -> bool:
+        return name in self.__registry
+
+    def __getitem__(self, name: str) -> 'conslayer.Combatant':
+        return self.__registry[name]
+
+    def __len__(self) -> int:
+        return len(self.__registry)
+
+    def __iter__(self) -> Iterator['conslayer.Combatant']:
+        for combatant in self.__registry.values():
+            yield combatant
 
     def add(self, name: str) -> None:
         """Add combatant to arena.
@@ -139,12 +165,32 @@ class Arena(rx.subject.BehaviorSubject):
             self.__listener[name].dispose()
             del self.__listener[name]
 
+        # Dispose scheduler
+        if name in self.__scheduler:
+            self.__scheduler[name].dispose()
+            del self.__scheduler[name]
+
         # Remove combatant from registry
         del self.__registry[name]
         self.on_next(self.state)
 
-        # Print messages
-        conslayer.MessageQueue().print()
+    def clear(self) -> None:
+        """Remove all combatants from arena."""
+
+        # Remove all combatants
+        for name in self.__registry:
+
+            # Dispose listener
+            if name in self.__listener:
+                self.__listener[name].dispose()
+                del self.__listener[name]
+
+            # Dispose scheduler
+            if name in self.__scheduler:
+                self.__scheduler[name].dispose()
+                del self.__scheduler[name]
+
+        self.__registry.clear()
 
     def start_fight(self, message: Optional[str] = None) -> None:
         """Start fight.
@@ -218,7 +264,7 @@ class Arena(rx.subject.BehaviorSubject):
             return
 
         # Remove Schedulers
-        for name, scheduler in self.__scheduler.items():
+        for scheduler in self.__scheduler.values():
             scheduler.dispose()
         self.__scheduler.clear()
 
@@ -227,7 +273,6 @@ class Arena(rx.subject.BehaviorSubject):
         stdout.queue("Fight stopped!")
         if message is not None:
             stdout.queue(message)
-
 
     def record_attack(self, attacker: 'conslayer.Combatant', target: 'conslayer.Combatant') -> None:
         """Record attack in global registry.
@@ -280,22 +325,8 @@ class Arena(rx.subject.BehaviorSubject):
         # Emit new global state
         self.on_next(self.state)
 
-    def __contains__(self, name: str) -> bool:
-        return name in self.__registry
-
-    def __getitem__(self, name: str) -> 'conslayer.Combatant':
-        return self.__registry[name]
-
-    def __len__(self) -> int:
-        return len(self.__registry)
-
-    def __iter__(self) -> Iterator['conslayer.Combatant']:
-        for combatant in self.__registry.values():
-            yield combatant
-
 class Guardian(rx.Observer):
-    """
-    Guardian class.
+    """Guardian class.
 
     Description:
         Guardian class, used to observe and evaluate arena state changes.
@@ -310,12 +341,12 @@ class Guardian(rx.Observer):
 
     __instance: Optional['Guardian'] = None
 
-    def __new__(cls):
+    def __new__(cls) -> 'Guardian':
         if cls.__instance is None:
             cls.__instance = object.__new__(cls)
         return cls.__instance
 
-    def watch(self, arena: 'conslayer.Arena'):
+    def watch(self, arena: 'conslayer.Arena') -> None:
         """Observe arena state changes.
         
         Args:
@@ -325,6 +356,38 @@ class Guardian(rx.Observer):
         arena.subscribe(self)
 
     def on_next(self, table: List[dict]):
+        """Evaluate arena state changes.
+
+        Args:
+            table (List[dict]): Arena state.
+
+        """
+
+        # Bind message queue
+        stdout = conslayer.MessageQueue()
+
+        # Check if fight is started
+        if not table[0]["started"]:
+            stdout.queue("Fight has not yet started.")
+            return
+
+        # Check if fight is over
+        if table[0]["hero"]["health"] <= 0:
+            stdout.queue("Hero is dead. Monsters win.")
+            return
+        if len(table[1]["monsters"]) == 0:
+            stdout.queue("Monsters are dead. Hero wins.")
+            return
+
+        # Check if monsters are dead
+        for monster in table[1]["monsters"]:
+            if monster["health"] > 0:
+                return
+
+        # Check if hero is dead
+        if table[0]["hero"]["health"] > 0:
+            stdout.queue("Monsters are dead. Hero wins.")
+            return
 
         arena = conslayer.Arena()
 

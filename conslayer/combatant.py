@@ -1,11 +1,22 @@
+# -*- coding: utf-8 -*-
+# Copyright (C) 2022 Patrick Michl
+# This file is part of Console Slayer, https://github.com/fishroot/conslayer
+"""Combatant management."""
+
+__copyright__ = '2022 Patrick Michl'
+__license__ = 'MIT'
+__docformat__ = 'google'
+__author__ = 'Patrick Michl'
+__email__ = 'patrick.michl@gmail.com'
+__authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
+
 from typing import Any, List, Optional
 
 import reactivex as rx
 import conslayer
 
 class Combatant(rx.subject.BehaviorSubject):
-    """
-    Combatant class.
+    """Combatant class.
 
     Description:
         Stores individual combatant states and publishes state changes.
@@ -30,30 +41,40 @@ class Combatant(rx.subject.BehaviorSubject):
     __interval: Optional[float]
 
     @property
-    def name(self):
+    def name(self) -> str: 
         return self.__name
 
     @property
-    def kind(self):
+    def kind(self) -> type:
         return self.__kind
 
     @property
-    def health(self):
+    def health(self) -> int:
         return self.__health
 
     @property
-    def damage(self):
+    def damage(self) -> int:
         return self.__damage
 
     @property
-    def interval(self):
+    def interval(self) -> Optional[float]:
         return self.__interval
 
     @property
-    def state(self):
+    def state(self) -> dict:
         return self.__getstate__()
 
-    def __init__(self, kind: type, name: str, health: int, damage: int, interval: Optional[float] = None):
+    def __init__(self, kind: type, name: str, health: int, damage: int, interval: Optional[float] = None) -> None:
+        """Initialize a new Combatant instance.
+
+        Args:
+            kind (type): Kind of the combatant (conslayer.Hero or conslayer.Monster)
+            name (str): Name of the combatant
+            health (int): Health of the combatant
+            damage (int): Health damage points an attack of the combatant causes
+            interval (Optional[float], optional): Interval between attacks in seconds
+
+        """
 
         # Check argument types
         if not isinstance(name, str):
@@ -83,7 +104,7 @@ class Combatant(rx.subject.BehaviorSubject):
         # Initialize superclass
         super().__init__(self.state)
 
-    def __getstate__(self):
+    def __getstate__(self) -> dict:
         return {
             'kind': self.__kind,
             'name': self.__name,
@@ -109,7 +130,7 @@ class Combatant(rx.subject.BehaviorSubject):
         
         arena.record_attack(self, arena[name])
 
-    def get_weakened(self, damage: int):
+    def get_weakened(self, damage: int) -> None:
         """Get weakened by damage points
         
         Args:
@@ -120,9 +141,9 @@ class Combatant(rx.subject.BehaviorSubject):
         self.__health = max(0, self.__health - damage)
         self.on_next(self.state)
 
+
 class Monster(Combatant):
-    """
-    Monster class.
+    """Monster class.
 
     Description:
         Combatant subclass for mosnsters.
@@ -137,7 +158,16 @@ class Monster(Combatant):
         Behaviour Subject
 
     """
-    def __init__(self, name: str, health: int, damage: int, interval: int):
+    def __init__(self, name: str, health: int, damage: int, interval: int) -> None:
+        """Initialize a new Monster instance.
+
+        Args:
+            name (str): Name of the monster
+            health (int): Health of the monster
+            damage (int): Health damage points an attack of the monster causes
+            interval (int): Interval between attacks in seconds
+
+        """
 
         # Check argument values
         if name == "hero":
@@ -146,8 +176,7 @@ class Monster(Combatant):
         super().__init__(Monster, name, health, damage, interval)
 
 class Hero(Combatant):
-    """
-    Hero class.
+    """Hero class.
 
     Description:
         Combatant subclass for heroes.
@@ -160,13 +189,20 @@ class Hero(Combatant):
         Behaviour Subject
 
     """
-    def __init__(self, health: int, damage: int):
+    def __init__(self, health: int, damage: int) -> None:
+        """Initialize a new Hero instance.
+
+        Args:
+            health (int): Health of the hero
+            damage (int): Health damage points an attack of the hero causes
+
+        """
+
         super().__init__(Hero, "hero", health, damage)
 
 
 class CombatantDict(dict):
-    """
-    CombatantDict class.
+    """CombatantDict class.
     
     Description:
         Stores a dictionary of combatants.
@@ -184,12 +220,12 @@ class CombatantDict(dict):
         ("orc", [Monster, "orc", 7, 1, 1.5]),
     ]
 
-    def __new__(cls):
+    def __new__(cls) -> 'CombatantDict':
         if cls.__instance is None:
             cls.__instance = dict.__new__(cls)
         return cls.__instance
 
-    def __init__(self):
+    def __init__(self) -> None:
         if not self.__initialized:
             super().__init__(self.__items)
             self.__initialized = True

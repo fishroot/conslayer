@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# Copyright (C) 2022 Patrick Michl
+# This file is part of Console Slayer, https://github.com/fishroot/conslayer
 """Console Slayer.
 
 Description:
@@ -41,18 +43,14 @@ def main() -> None:
 
         if command == "exit":
             break
-        elif command[:len("add ")] == "add ":
-            target = command[len("add "):]
-            arena.add(target)
+        elif command[:4] == "add ":
+            arena.add(command[4:].strip())
         elif command == "start":
             arena.start_fight()
         elif command == "stop":
             arena.stop_fight()
-        elif command[:len("attack ")] == "attack ":
-            target = command[len("attack "):]
-            arena["hero"].attack(target)
-        # elif command == "status":
-        #     print("todo")
+        elif command[:7] == "attack ":
+            arena["hero"].attack(command[7:].strip())
         elif command == "help":
             stdout.queue("Available commands:")
             stdout.queue("  'add <name>': Add a combatant to the arena")
@@ -70,3 +68,7 @@ def main() -> None:
             stdout.queue(f"Unknown command. Type 'help' for a list of available commands.")
 
         stdout.print()
+
+# Run main() if this file is executed directly
+if __name__ == '__main__':
+    main()
