@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+#
 # Copyright (C) 2022 Patrick Michl
 # This file is part of Console Slayer, https://github.com/fishroot/conslayer
+#
 """Console Slayer.
 
 Description:

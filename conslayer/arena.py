@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#
 # Copyright (C) 2022 Patrick Michl
 # This file is part of Console Slayer, https://github.com/fishroot/conslayer
 """Arena management."""
@@ -14,6 +15,10 @@ from typing import Dict, Iterator, List, Optional, OrderedDict
 
 import reactivex as rx
 import conslayer
+
+#
+# Arena
+#
 
 class Arena(rx.subject.BehaviorSubject):
     """Arena Class.
@@ -325,6 +330,10 @@ class Arena(rx.subject.BehaviorSubject):
         # Emit new global state
         self.on_next(self.state)
 
+#
+# Guardian
+#
+
 class Guardian(rx.Observer):
     """Guardian class.
 
@@ -366,29 +375,7 @@ class Guardian(rx.Observer):
         # Bind message queue
         stdout = conslayer.MessageQueue()
 
-        # Check if fight is started
-        if not table[0]["started"]:
-            stdout.queue("Fight has not yet started.")
-            return
-
-        # Check if fight is over
-        if table[0]["hero"]["health"] <= 0:
-            stdout.queue("Hero is dead. Monsters win.")
-            return
-        if len(table[1]["monsters"]) == 0:
-            stdout.queue("Monsters are dead. Hero wins.")
-            return
-
-        # Check if monsters are dead
-        for monster in table[1]["monsters"]:
-            if monster["health"] > 0:
-                return
-
-        # Check if hero is dead
-        if table[0]["hero"]["health"] > 0:
-            stdout.queue("Monsters are dead. Hero wins.")
-            return
-
+        # Bind arena
         arena = conslayer.Arena()
 
         # Evaluate combatants health states
@@ -410,11 +397,11 @@ class Guardian(rx.Observer):
         # Check if all monsters are dead
         if remove and monsters == 0:
             arena.stop_fight("All monsters are dead. Hero wins!")
-            conslayer.MessageQueue().print()
+            stdout.print()
             return
         
         # Check if all heroes are dead
         if remove and heroes == 0:
             arena.stop_fight("Hero is dead. Monsters win!")
-            conslayer.MessageQueue().print()
+            stdout.print()
             return

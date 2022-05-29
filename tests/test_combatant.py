@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+#
 # Copyright (C) 2022 Patrick Michl
 # This file is part of Console Slayer, https://github.com/fishroot/conslayer
+#
 """Testcases for combatant management."""
 
 __copyright__ = '2022 Patrick Michl'
@@ -121,8 +123,8 @@ class CombatantTest(unittest.TestCase):
         arena["hero"].get_weakened(5)
         next_health = arena["hero"].health
         self.assertEqual(prev_health - next_health, 5)
-        arena["hero"].get_weakened(next_health)
-        self.assertEqual(arena["hero"].health, 0)
+        arena["hero"].get_weakened(next_health - 1)
+        self.assertEqual(arena["hero"].health, 1)
 
     def test_get_weakened_dragon(self):
         conslayer.MessageQueue().silent = True
@@ -133,8 +135,8 @@ class CombatantTest(unittest.TestCase):
         arena["orc"].get_weakened(5)
         next_health = arena["orc"].health
         self.assertEqual(prev_health - next_health, 5)
-        arena["orc"].get_weakened(next_health)
-        self.assertEqual(arena["orc"].health, 0)
+        arena["orc"].get_weakened(next_health - 1)
+        self.assertEqual(arena["orc"].health, 1)
 
     def test_get_weakened_orc(self):
         conslayer.MessageQueue().silent = True
@@ -145,8 +147,8 @@ class CombatantTest(unittest.TestCase):
         arena["dragon"].get_weakened(5)
         next_health = arena["dragon"].health
         self.assertEqual(prev_health - next_health, 5)
-        arena["dragon"].get_weakened(next_health)
-        self.assertEqual(arena["dragon"].health, 0)
+        arena["dragon"].get_weakened(next_health - 1)
+        self.assertEqual(arena["dragon"].health, 1)
 
 class MonsterTest(unittest.TestCase):
     def test_init_orc(self):

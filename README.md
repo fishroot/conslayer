@@ -35,8 +35,6 @@ Available commands:
 ```bash
 $ git clone https://github.com/fishroot/conslayer.git
 $ pip install ./conslayer
-$ cd ./conslayer/tests
-$ python arena.test.py
-$ python combatant.test.py
-$ python console.test.py
+$ cd ./conslayer
+$ python -m unittest discover -v
 ```

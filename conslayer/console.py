@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+#
 # Copyright (C) 2022 Patrick Michl
 # This file is part of Console Slayer, https://github.com/fishroot/conslayer
+#
 """Console management."""
 
 __copyright__ = '2022 Patrick Michl'
@@ -11,6 +13,10 @@ __email__ = 'patrick.michl@gmail.com'
 __authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
 
 from typing import List, Optional
+
+#
+# MessageQueue
+#
 
 class MessageQueue(object):
     """MessageQueue class.

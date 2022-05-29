@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+#
 # Copyright (C) 2022 Patrick Michl
 # This file is part of Console Slayer, https://github.com/fishroot/conslayer
+#
 """Combatant management."""
 
 __copyright__ = '2022 Patrick Michl'
@@ -14,6 +16,10 @@ from typing import Any, List, Optional
 
 import reactivex as rx
 import conslayer
+
+#
+# Combatant
+#
 
 class Combatant(rx.subject.BehaviorSubject):
     """Combatant class.
@@ -141,6 +147,9 @@ class Combatant(rx.subject.BehaviorSubject):
         self.__health = max(0, self.__health - damage)
         self.on_next(self.state)
 
+#
+# Monster
+#
 
 class Monster(Combatant):
     """Monster class.
@@ -175,6 +184,10 @@ class Monster(Combatant):
 
         super().__init__(Monster, name, health, damage, interval)
 
+#
+# Hero
+#
+
 class Hero(Combatant):
     """Hero class.
 
@@ -200,6 +213,9 @@ class Hero(Combatant):
 
         super().__init__(Hero, "hero", health, damage)
 
+#
+# CombatantDict
+#
 
 class CombatantDict(dict):
     """CombatantDict class.
