@@ -27,7 +27,7 @@ class Arena(rx.subject.BehaviorSubject):
     changes using the following design patterns:
         (1) Registry pattern for combatant binding
         (2) Singleton pattern for application global availability
-        (3) Behaviour Subject pattern fo concurrent observability
+        (3) Behaviour Subject pattern for concurrent observability
         (4) State pattern for arena state determination
         (5) Iterable pattern for iterating over combatants
 

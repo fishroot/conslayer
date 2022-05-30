@@ -28,6 +28,7 @@ from conslayer.console import MessageQueue
 def main() -> None:
     """Entrypoint for conslayer."""
 
+    # Bind messsage queue
     stdout = MessageQueue()
 
     # Create arena and add hero
@@ -38,12 +39,16 @@ def main() -> None:
     guardian = Guardian()
     guardian.watch(arena)
 
-    # Start the game
+    # Print and flush message queue
     stdout.print()
 
+    # Start the game
     while True:
+
+        # Get input from user
         command = input("> ").strip().lower()
 
+        # Evaluate input
         if command == "exit":
             break
         elif command[:4] == "add ":
@@ -70,6 +75,7 @@ def main() -> None:
         else:
             stdout.queue(f"Unknown command. Type 'help' for a list of available commands.")
 
+        # Print and flush message queue
         stdout.print()
 
 # Run main() if this file is executed directly
