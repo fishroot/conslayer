@@ -23,7 +23,7 @@ Hero enters arena.
 Available commands:
   'add <name>': Add a combatant to the arena (orc, dragon, hero)
   'start': Start the fight
-  'attack <monster>': Attack the monster
+  'attack <name>': Attack the monster
   'stop': Stop the fight
   'help': Show this help message
   'about': Show application version

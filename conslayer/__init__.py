@@ -57,7 +57,7 @@ def main() -> None:
             stdout.queue("Available commands:")
             stdout.queue("  'add <name>': Add a combatant to the arena (orc, dragon, hero)")
             stdout.queue("  'start': Start the fight")
-            stdout.queue("  'attack <monster>': Attack the monster")
+            stdout.queue("  'attack <name>': Attack the combatant")
             stdout.queue("  'stop': Stop the fight")
             stdout.queue("  'help': Show this help message")
             stdout.queue("  'about': Show application version")
