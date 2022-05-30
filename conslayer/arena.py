@@ -24,14 +24,17 @@ class Arena(rx.subject.BehaviorSubject):
     """Arena Class.
 
     Collect states of individual combatants to a consolidated arena state and propagate
-    changes using (1) the registry pattern for combatant binding (2) the singleton
-    pattern for global availability and (3) the behaviour subject pattern for
-    concurrent observability.
+    changes using the following design patterns:
+        (1) Registry pattern for combatant binding
+        (2) Singleton pattern for application global availability
+        (3) Behaviour Subject pattern fo concurrent observability
+        (4) State pattern for arena state determination
+        (5) Iterable pattern for iterating over combatants
 
     Attributes:
-        state (readonly, OrderedDict): Global state of all combatants.
-        heroes (readonly, OrderedDict): All heroes in arena.
-        monsters (readonly, OrderedDict): All monsters in arena.
+        state (List[dict], readonly): Global state of arenas' combatant properties.
+        heroes (List[Hero], readonly): All heroes in arena.
+        monsters (List[Monster], readonly): All monsters in arena.
 
     """
 
@@ -209,7 +212,7 @@ class Arena(rx.subject.BehaviorSubject):
             Start fight between combatants.
 
         Args:
-            message (optional, str): Message to print.
+            message (str, optional): Message to print.
 
         """
 
@@ -351,8 +354,10 @@ class Arena(rx.subject.BehaviorSubject):
 class Guardian(rx.Observer):
     """Guardian class.
 
-    Used to observe and evaluate arena state changes using (1) the observer pattern for
-    concurrent observation and (2) the singleton pattern for global availability.
+    Used to observe and evaluate arena state changes using the following design patterns:
+        (1) observer pattern for concurrent observation of arena states
+        (2) singleton pattern for application global availability.
+
     If a monster dies, the guardian will remove the monster from the arena.
     If all monsters are dead, the guardian will stop the fight and pronounce the player the winner.
     If the hero dies, the guardian will stop the fight and pronounce the monsters the winner.

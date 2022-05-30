@@ -24,8 +24,10 @@ import conslayer
 class Combatant(rx.subject.BehaviorSubject):
     """Combatant class.
 
-    Stores individual combatant states and propagates state changes by using a
-    behaviour subject pattern.
+    Stores individual combatant states and propagates state changes by using the following
+    design patterns:
+        (1) Behaviour Subject pattern for concurrent observability
+        (2) State pattern for combatant state determination
 
     Args:
         kind (type): Kind of the combatant (conslayer.Hero or conslayer.Monster)
@@ -149,7 +151,9 @@ class Monster(Combatant):
     """Monster class.
 
     Combatant subclass used to store individual monster states and
-    propagates state changes by using a behaviour subject pattern.
+    propagate state changes by using the following design patterns:
+        (1) Behaviour Subject pattern for concurrent observability
+        (2) State pattern for monster state determination
 
     Args:
         name (str): Name of the monster
@@ -158,10 +162,10 @@ class Monster(Combatant):
         interval (int): Interval between attacks in seconds
 
     Attributes:
-        name (readonly, str): Name of the monster
-        health (readonly, int): Health of the monster
-        damage (readonly, int): Health damage points an attack of the monster causes
-        interval (readonly, float): Interval between attacks in seconds
+        name (str, readonly): Name of the monster
+        health (int, readonly): Health of the monster
+        damage (int, readonly): Health damage points an attack of the monster causes
+        interval (float, readonly): Interval between attacks in seconds
 
     """
     def __init__(self, name: str, health: int, damage: int, interval: int) -> None:
@@ -179,16 +183,18 @@ class Monster(Combatant):
 class Hero(Combatant):
     """Hero class.
 
-    Combatant subclass used to store individual hero states and
-    propagates state changes by using a behaviour subject pattern.
+    Combatant subclass used to store individual heroes states and
+    propagate state changes by using the following design patterns:
+        (1) Behaviour Subject pattern for concurrent observability
+        (2) State pattern for hero state determination
 
     Args:
         health (int): Health of the hero
         damage (int): Health damage points an attack of the hero causes
 
     Attributes:
-        health (readonly, int): Health of the hero
-        damage (readonly, int): Health damage points an attack of the hero causes
+        health (int, readonly): Health of the hero
+        damage (int, readonly): Health damage points an attack of the hero causes
 
     """
     def __init__(self, health: int, damage: int) -> None:
@@ -201,7 +207,9 @@ class Hero(Combatant):
 class CombatantDict(dict):
     """CombatantDict class.
     
-    Stores a dictionary of combatant properties using a singleton desing pattern.
+    Stores known combatant properties using the following patterns:
+        (1) Singleton pattern for application global availability
+        (2) Iterable pattern for iteration over all combatant properties
 
     """
 
