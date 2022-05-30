@@ -23,16 +23,15 @@ import conslayer
 class Arena(rx.subject.BehaviorSubject):
     """Arena Class.
 
-    Description:
-        Administer the states of combatants and publish global state changes.
+    Collect states of individual combatants to a consolidated arena state and propagate
+    changes using (1) the registry pattern for combatant binding (2) the singleton
+    pattern for global availability and (3) the behaviour subject pattern for
+    concurrent observability.
 
     Attributes:
         state (readonly, OrderedDict): Global state of all combatants.
         heroes (readonly, OrderedDict): All heroes in arena.
         monsters (readonly, OrderedDict): All monsters in arena.
-
-    Design Patterns:
-        Singleton, Registry, Behaviour Subject
 
     """
 
@@ -73,8 +72,8 @@ class Arena(rx.subject.BehaviorSubject):
     def __init__(self) -> None:
         if not self.__initialized:
             super(Arena, self).__init__(self.state)
-            conslayer.MessageQueue().queue("Welcome to the arena! Type 'help' for more information.")
-            conslayer.MessageQueue().print()
+            stdout = conslayer.MessageQueue()
+            stdout.queue("Welcome to the arena! Type 'help' for more information.")
             self.__initialized = True
 
     def __getstate__(self) -> List[dict]:
@@ -145,7 +144,7 @@ class Arena(rx.subject.BehaviorSubject):
             name (str): Name of combatant to remove.
         
         Raises:
-            KeyError: Combatant not found.
+            TypeError: Argument 'name' requires type 'str'.
 
         """
 
@@ -177,12 +176,14 @@ class Arena(rx.subject.BehaviorSubject):
 
         # Remove combatant from registry
         del self.__registry[name]
+
+        # Propagate state change
         self.on_next(self.state)
 
     def clear(self) -> None:
         """Remove all combatants from arena."""
 
-        # Remove all combatants
+        # Iterate over combatants
         for name in self.__registry:
 
             # Dispose listener
@@ -195,7 +196,11 @@ class Arena(rx.subject.BehaviorSubject):
                 self.__scheduler[name].dispose()
                 del self.__scheduler[name]
 
+        # Remove all combatants from registry
         self.__registry.clear()
+
+        # Propagate state change
+        self.on_next(self.state)
 
     def start_fight(self, message: Optional[str] = None) -> None:
         """Start fight.
@@ -208,6 +213,7 @@ class Arena(rx.subject.BehaviorSubject):
 
         """
 
+        # Bind message queue
         stdout = conslayer.MessageQueue()
 
         # Check if fight is already started
@@ -286,6 +292,10 @@ class Arena(rx.subject.BehaviorSubject):
             attacker (Combatant): Attacker
             target (Combatant): Target
         
+        Raises:
+            TypeError: Argument 'attacker' requires type 'conslayer.Combatant'.
+            TypeError: Argument 'target' requires type 'conslayer.Combatant'.
+
         """
 
         # Check argument types
@@ -294,20 +304,24 @@ class Arena(rx.subject.BehaviorSubject):
         if not isinstance(target, conslayer.Combatant):
             raise TypeError("Argument 'target' requires type 'Combatant'")
 
+        # Bind message queue
+        stdout = conslayer.MessageQueue()
+
         # Check if attacker and target are in arena
         if attacker.name not in self.__registry:
-            raise KeyError(f"Attacker '{attacker.name}' is not known in arena")
+            stdout.queue(f"Attacker '{attacker.name}' is not known in arena")
+            return
         if target.name not in self.__registry:
-            raise KeyError(f"Target '{target.name}' is not known in arena")
+            stdout.queue(f"Target '{target.name}' is not known in arena")
+            return
 
         # Check if attacker and target are alive
         if attacker.health <= 0:
-            raise Exception(f"Attacker '{attacker.name}' is already dead")
+            stdout.queue(f"Attacker '{attacker.name}' is already dead")
+            return
         if target.health <= 0:
-            raise Exception(f"Target '{target.name}' is already dead")
-
-        # Bind message queue
-        stdout = conslayer.MessageQueue()
+            stdout.queue(f"Target '{target.name}' is already dead")
+            return
 
         # Check if fight is started
         if not self.__started:
@@ -327,7 +341,7 @@ class Arena(rx.subject.BehaviorSubject):
         # Update health of target
         target.get_weakened(attacker.damage)
 
-        # Emit new global state
+        # Propagate state change
         self.on_next(self.state)
 
 #
@@ -337,18 +351,24 @@ class Arena(rx.subject.BehaviorSubject):
 class Guardian(rx.Observer):
     """Guardian class.
 
-    Description:
-        Guardian class, used to observe and evaluate arena state changes.
-        If a monster dies, the guardian will remove the monster from the arena.
-        If all monsters are dead, the guardian will stop the fight and pronounce the player the winner.
-        If the hero dies, the guardian will stop the fight pronounce the monsters the winner.
+    Used to observe and evaluate arena state changes using (1) the observer pattern for
+    concurrent observation and (2) the singleton pattern for global availability.
+    If a monster dies, the guardian will remove the monster from the arena.
+    If all monsters are dead, the guardian will stop the fight and pronounce the player the winner.
+    If the hero dies, the guardian will stop the fight and pronounce the monsters the winner.
 
-    Design Patterns:
-        Singleton, Observer
+    Attributes:
+        arena (Arena, readonly): Bound arena instance.
 
     """
 
     __instance: Optional['Guardian'] = None
+    __arena: Optional['conslayer.Arena'] = None
+
+    @property
+    def arena(self) -> 'conslayer.Arena':
+        """Return arena instance."""
+        return self.__arena
 
     def __new__(cls) -> 'Guardian':
         if cls.__instance is None:
@@ -362,6 +382,11 @@ class Guardian(rx.Observer):
             arena (Arena): Arena to observe.
         
         """
+
+        # Bind arena
+        self.__arena = arena
+
+        # Subscribe to arena state changes
         arena.subscribe(self)
 
     def on_next(self, table: List[dict]):

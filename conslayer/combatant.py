@@ -24,8 +24,15 @@ import conslayer
 class Combatant(rx.subject.BehaviorSubject):
     """Combatant class.
 
-    Description:
-        Stores individual combatant states and publishes state changes.
+    Stores individual combatant states and propagates state changes by using a
+    behaviour subject pattern.
+
+    Args:
+        kind (type): Kind of the combatant (conslayer.Hero or conslayer.Monster)
+        name (str): Name of the combatant
+        health (int): Health of the combatant
+        damage (int): Health damage points an attack of the combatant causes
+        interval (Optional[float], optional): Interval between attacks in seconds
 
     Attributes:
         kind (readonly, type): Kind of the combatant (conslayer.Hero or conslayer.Monster)
@@ -34,9 +41,6 @@ class Combatant(rx.subject.BehaviorSubject):
         damage (readonly, int): Health damage points an attack of the combatant causes
         interval (readonly, float): Interval between attacks in seconds
         state (readonly, dict): Current state of the combatant
-
-    Design Patterns:
-        Behaviour Subject
 
     """
 
@@ -71,16 +75,6 @@ class Combatant(rx.subject.BehaviorSubject):
         return self.__getstate__()
 
     def __init__(self, kind: type, name: str, health: int, damage: int, interval: Optional[float] = None) -> None:
-        """Initialize a new Combatant instance.
-
-        Args:
-            kind (type): Kind of the combatant (conslayer.Hero or conslayer.Monster)
-            name (str): Name of the combatant
-            health (int): Health of the combatant
-            damage (int): Health damage points an attack of the combatant causes
-            interval (Optional[float], optional): Interval between attacks in seconds
-
-        """
 
         # Check argument types
         if not isinstance(name, str):
@@ -154,8 +148,14 @@ class Combatant(rx.subject.BehaviorSubject):
 class Monster(Combatant):
     """Monster class.
 
-    Description:
-        Combatant subclass for mosnsters.
+    Combatant subclass used to store individual monster states and
+    propagates state changes by using a behaviour subject pattern.
+
+    Args:
+        name (str): Name of the monster
+        health (int): Health of the monster
+        damage (int): Health damage points an attack of the monster causes
+        interval (int): Interval between attacks in seconds
 
     Attributes:
         name (readonly, str): Name of the monster
@@ -163,20 +163,8 @@ class Monster(Combatant):
         damage (readonly, int): Health damage points an attack of the monster causes
         interval (readonly, float): Interval between attacks in seconds
 
-    Design Patterns:
-        Behaviour Subject
-
     """
     def __init__(self, name: str, health: int, damage: int, interval: int) -> None:
-        """Initialize a new Monster instance.
-
-        Args:
-            name (str): Name of the monster
-            health (int): Health of the monster
-            damage (int): Health damage points an attack of the monster causes
-            interval (int): Interval between attacks in seconds
-
-        """
 
         # Check argument values
         if name == "hero":
@@ -191,26 +179,19 @@ class Monster(Combatant):
 class Hero(Combatant):
     """Hero class.
 
-    Description:
-        Combatant subclass for heroes.
+    Combatant subclass used to store individual hero states and
+    propagates state changes by using a behaviour subject pattern.
+
+    Args:
+        health (int): Health of the hero
+        damage (int): Health damage points an attack of the hero causes
 
     Attributes:
         health (readonly, int): Health of the hero
         damage (readonly, int): Health damage points an attack of the hero causes
 
-    Design Patterns:
-        Behaviour Subject
-
     """
     def __init__(self, health: int, damage: int) -> None:
-        """Initialize a new Hero instance.
-
-        Args:
-            health (int): Health of the hero
-            damage (int): Health damage points an attack of the hero causes
-
-        """
-
         super().__init__(Hero, "hero", health, damage)
 
 #
@@ -220,11 +201,7 @@ class Hero(Combatant):
 class CombatantDict(dict):
     """CombatantDict class.
     
-    Description:
-        Stores a dictionary of combatants.
-
-    Design Patterns:
-        Singleton
+    Stores a dictionary of combatant properties using a singleton desing pattern.
 
     """
 

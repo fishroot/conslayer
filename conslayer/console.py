@@ -21,14 +21,11 @@ from typing import List, Optional
 class MessageQueue(object):
     """MessageQueue class.
     
-    Description:
-        Stores messages for console output.
+    Stores messages for console output using the singleton pattern for global
+    availability
 
     Attributes:
-        silent (readonly, bool): Flag to suppress console output
-
-    Design Patterns:
-        Behaviour Subject
+        silent (bool): Flag to temporary suppress console outputs
 
     """
 

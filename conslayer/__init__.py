@@ -12,7 +12,8 @@ Description:
 """
 __version__ = '1.0.0'
 __status__ = 'Development'
-__description__ = 'Console based hack and slash game'
+__description__ = 'Simple console-based hack and slash game'
+__copyright__ = '2022 Patrick Michl'
 __license__ = 'MIT'
 __author__ = 'Patrick Michl'
 __email__ = 'patrick.michl@gmail.com'
