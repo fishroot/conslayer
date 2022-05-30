@@ -37,6 +37,25 @@ class MessageQueueTest(unittest.TestCase):
         stdout.silent = False
         self.assertEqual(stdout.silent, False)
 
+    def test_len(self):
+        stdout = conslayer.MessageQueue()
+        stdout.silent = True
+        stdout.flush()
+        for i in range(5):
+            stdout.queue(str(i))
+        self.assertEqual(len(stdout), 5)
+
+    def test_iter(self):
+        stdout = conslayer.MessageQueue()
+        stdout.silent = True
+        stdout.flush()
+        for i in range(5):
+            stdout.queue(str(i))
+        l = []
+        for s in stdout:
+            l.append(s)
+        self.assertEqual(l, ["0", "1", "2", "3", "4"])
+
     def test_queue(self):
         stdout = conslayer.MessageQueue()
         stdout.silent = True

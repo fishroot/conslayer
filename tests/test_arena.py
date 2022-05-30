@@ -211,6 +211,17 @@ class GuardianTest(unittest.TestCase):
         guardian = conslayer.Guardian()
         self.assertIsInstance(guardian, conslayer.Guardian)
 
+    def test_arena(self):
+        conslayer.MessageQueue().silent = True
+        conslayer.Arena().clear()
+        arena = conslayer.Arena()
+        arena.add("hero")
+        arena.add("orc")
+        guardian = conslayer.Guardian()
+        self.assertEqual(guardian.arena, None)
+        guardian.watch(arena)
+        self.assertNotEqual(guardian.arena, None)
+
     def test_watch(self):
         conslayer.MessageQueue().silent = True
         conslayer.Arena().clear()
