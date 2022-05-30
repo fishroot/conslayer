@@ -4,7 +4,7 @@ class Guardian
     +arena : Arena
     +watch() : void
 }
-
+  
 class Arena
 {
     +state : List[dict]: 
@@ -17,7 +17,7 @@ class Arena
     +stop(): void
     +record_attack() : void
 }
-
+  
 abstract class Combatant
 {
     +state : dict
@@ -28,7 +28,7 @@ abstract class Combatant
     +interval : float
     +attack() : void
 }
-
+  
 class Hero
 {
     +state : dict
@@ -38,7 +38,7 @@ class Hero
     +damage : int
     +attack() : void
 }
-
+  
 class Monster
 {
     +state : dict
@@ -49,30 +49,31 @@ class Monster
     +interval : float
     +attack() : void
 }
-
+  
 class MessageQueue
 {
     +silent : bool
-
+  
     +queue() : void
     +flush() : void
     +print() : void
 }
-
+  
 class CombatantDict
 {
     -__items: list
     +get() : list
 }
-
-Combatant <-- Monster: implement
-Combatant <-- Hero: implement
-
-CombatantDict <-- Combatant : lookup
-
+  
+Combatant --> Monster: implement
+Combatant --> Hero: implement
+  
+CombatantDict --> Combatant
+  
 Guardian "1" --> "1" Arena : subscribe
 Arena "1" *-> "n" Combatant : subscribe
-
-Arena "1" --> "1" MessageQueue : queue
-Guardian "1" --> "1" MessageQueue : queue
+  
+Arena "1" --> "1" MessageQueue
+Guardian "1" --> "1" MessageQueue
 ```
+  
