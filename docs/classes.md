@@ -26,7 +26,9 @@ abstract class Combatant
     +health : int
     +damage : int
     +interval : float
+    --
     +attack() : void
+    +get_weakened() : void
 }
 
 class Hero
@@ -36,6 +38,7 @@ class Hero
     +name : str
     +health : int
     +damage : int
+    --
     +attack() : void
 }
 
@@ -47,13 +50,14 @@ class Monster
     +health : int
     +damage : int
     +interval : float
+    --
     +attack() : void
 }
 
 class MessageQueue
 {
     +silent : bool
-
+    --
     +queue() : void
     +flush() : void
     +print() : void
@@ -62,17 +66,20 @@ class MessageQueue
 class CombatantDict
 {
     -__items: list
+    --
     +get() : list
 }
 
 Combatant <-- Monster: implement
 Combatant <-- Hero: implement
 
-CombatantDict <-- Combatant : lookup
+CombatantDict <-- Combatant : bind
 
 Guardian "1" --> "1" Arena : subscribe
 Arena "1" *-> "n" Combatant : subscribe
 
-Arena "1" --> "1" MessageQueue : queue
-Guardian "1" --> "1" MessageQueue : queue
+Arena <-- Combatant : bind
+
+Arena "1" --> "1" MessageQueue : bind
+Guardian "1" --> "1" MessageQueue : bind
 ```
