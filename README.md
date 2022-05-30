@@ -21,7 +21,7 @@ Welcome to the arena! Type 'help' for more information.
 Hero enters arena.
 > help
 Available commands:
-  'add <name>': Add a combatant to the arena
+  'add <name>': Add a combatant to the arena (orc, dragon, hero)
   'start': Start the fight
   'attack <monster>': Attack the monster
   'stop': Stop the fight
@@ -31,7 +31,6 @@ Available commands:
 ```
 
 ## Testing
-
 ```bash
 $ git clone https://github.com/fishroot/conslayer.git
 $ pip install ./conslayer

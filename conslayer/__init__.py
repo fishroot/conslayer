@@ -55,7 +55,7 @@ def main() -> None:
             arena["hero"].attack(command[7:].strip())
         elif command == "help":
             stdout.queue("Available commands:")
-            stdout.queue("  'add <name>': Add a combatant to the arena")
+            stdout.queue("  'add <name>': Add a combatant to the arena (orc, dragon, hero)")
             stdout.queue("  'start': Start the fight")
             stdout.queue("  'attack <monster>': Attack the monster")
             stdout.queue("  'stop': Stop the fight")
