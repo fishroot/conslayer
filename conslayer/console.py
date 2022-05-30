@@ -12,7 +12,7 @@ __author__ = 'Patrick Michl'
 __email__ = 'patrick.michl@gmail.com'
 __authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
 
-from typing import List, Optional
+from typing import Iterator, List, Optional
 
 #
 # MessageQueue
@@ -21,8 +21,10 @@ from typing import List, Optional
 class MessageQueue(object):
     """MessageQueue class.
     
-    Stores messages for console output using the singleton pattern for global
-    availability
+    Stores a message queue for console output using the following
+    design patterns:
+        (1) Singleton pattern for application global availability
+        (2) Iterable pattern for iterating over messages
 
     Attributes:
         silent (bool): Flag to temporary suppress console outputs
@@ -51,6 +53,13 @@ class MessageQueue(object):
         if len(self.__queue) == 0:
             return ""
         return "\n".join(self.__queue)
+
+    def __len__(self) -> int:
+        return len(self.__queue)
+
+    def __iter__(self) -> Iterator[str]:
+        for message in self.__queue:
+            yield message
 
     def queue(self, message: str):
         """Queue a message.
