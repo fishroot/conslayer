@@ -5,9 +5,9 @@
 #
 """Console Slayer.
 
-Description:
-    Console Slayer (conslayer) is a simple console-based hack and slash game.
-    The player commands a hero to kill monsters by using console commands.
+Console Slayer (conslayer) is a simple console-based hack and slash game.
+The player commands a hero in an arena to fight against monsters by using
+console commands. The game is designed to be played in a terminal window.
 
 """
 __version__ = '1.0.0'
@@ -28,7 +28,7 @@ from conslayer.console import MessageQueue
 def main() -> None:
     """Entrypoint for conslayer."""
 
-    # Bind messsage queue
+    # Bind message queue
     stdout = MessageQueue()
 
     # Create arena and add hero
