@@ -1,0 +1,378 @@
+<!DOCTYPE html><html><head>
+      <title>classes</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\patri\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.6.3\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="556px" preserveAspectRatio="none" style="width:434px;height:556px;background:#FFFFFF;" version="1.1" viewBox="0 0 434 556" width="434px" zoomAndPan="magnify"><defs><filter height="300%" id="fyskiiu5hd8u2" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[6846584b9ac2e25fb6f7e2bf95ea0e97]
+class Guardian--><rect codeline="1" fill="#FEFECE" filter="url(#fyskiiu5hd8u2)" height="75.6719" id="Guardian" style="stroke:#A80036;stroke-width:1.5;" width="94" x="7" y="7"/><ellipse cx="26.95" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M29.7156,18.875 Q29.8719,18.6563 30.0594,18.5469 Q30.2469,18.4375 30.4656,18.4375 Q30.8406,18.4375 31.075,18.7031 Q31.3094,18.9531 31.3094,19.5625 L31.3094,21.0156 Q31.3094,21.625 31.075,21.8906 Q30.8406,22.1563 30.4656,22.1563 Q30.1219,22.1563 29.9188,21.9531 Q29.7156,21.7656 29.6063,21.25 Q29.5594,20.8906 29.3719,20.7031 Q29.0438,20.3281 28.4344,20.1094 Q27.825,19.8906 27.2,19.8906 Q26.4344,19.8906 25.7938,20.2188 Q25.1688,20.5469 24.6688,21.2969 Q24.1844,22.0469 24.1844,23.0781 L24.1844,24.1719 Q24.1844,25.4063 25.075,26.2344 Q25.9656,27.0469 27.5594,27.0469 Q28.4969,27.0469 29.1531,26.7969 Q29.5438,26.6406 29.9656,26.2031 Q30.2313,25.9375 30.3719,25.8594 Q30.5281,25.7813 30.7313,25.7813 Q31.0594,25.7813 31.3094,26.0469 Q31.575,26.2969 31.575,26.6406 Q31.575,26.9844 31.2313,27.3906 Q30.7313,27.9688 29.9344,28.2969 Q28.8563,28.75 27.5594,28.75 Q26.0438,28.75 24.8406,28.125 Q23.8563,27.625 23.1688,26.5625 Q22.4813,25.4844 22.4813,24.2031 L22.4813,23.0469 Q22.4813,21.7188 23.0906,20.5781 Q23.7156,19.4219 24.8094,18.8125 Q25.9031,18.1875 27.1375,18.1875 Q27.8719,18.1875 28.5125,18.3594 Q29.1688,18.5156 29.7156,18.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="51" x="42.05" y="27.9102">Guardian</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="100" y1="39" y2="39"/><ellipse cx="18" cy="50" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="67" x="27" y="54.4189">arena : Arena</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="100" y1="60.8359" y2="60.8359"/><ellipse cx="18" cy="71.8359" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="68" x="27" y="76.2549">watch() : void</text><!--MD5=[01aeada2388ef746e455587df9a4d391]
+class Arena--><rect codeline="7" fill="#FEFECE" filter="url(#fyskiiu5hd8u2)" height="158.6875" id="Arena" style="stroke:#A80036;stroke-width:1.5;" width="142" x="61" y="161"/><ellipse cx="111.75" cy="177" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M114.5156,172.875 Q114.6719,172.6563 114.8594,172.5469 Q115.0469,172.4375 115.2656,172.4375 Q115.6406,172.4375 115.875,172.7031 Q116.1094,172.9531 116.1094,173.5625 L116.1094,175.0156 Q116.1094,175.625 115.875,175.8906 Q115.6406,176.1563 115.2656,176.1563 Q114.9219,176.1563 114.7188,175.9531 Q114.5156,175.7656 114.4063,175.25 Q114.3594,174.8906 114.1719,174.7031 Q113.8438,174.3281 113.2344,174.1094 Q112.625,173.8906 112,173.8906 Q111.2344,173.8906 110.5938,174.2188 Q109.9688,174.5469 109.4688,175.2969 Q108.9844,176.0469 108.9844,177.0781 L108.9844,178.1719 Q108.9844,179.4063 109.875,180.2344 Q110.7656,181.0469 112.3594,181.0469 Q113.2969,181.0469 113.9531,180.7969 Q114.3438,180.6406 114.7656,180.2031 Q115.0313,179.9375 115.1719,179.8594 Q115.3281,179.7813 115.5313,179.7813 Q115.8594,179.7813 116.1094,180.0469 Q116.375,180.2969 116.375,180.6406 Q116.375,180.9844 116.0313,181.3906 Q115.5313,181.9688 114.7344,182.2969 Q113.6563,182.75 112.3594,182.75 Q110.8438,182.75 109.6406,182.125 Q108.6563,181.625 107.9688,180.5625 Q107.2813,179.4844 107.2813,178.2031 L107.2813,177.0469 Q107.2813,175.7188 107.8906,174.5781 Q108.5156,173.4219 109.6094,172.8125 Q110.7031,172.1875 111.9375,172.1875 Q112.6719,172.1875 113.3125,172.3594 Q113.9688,172.5156 114.5156,172.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="32" x="132.25" y="181.9102">Arena</text><line style="stroke:#A80036;stroke-width:1.5;" x1="62" x2="202" y1="193" y2="193"/><ellipse cx="72" cy="204" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="76" x="81" y="208.4189">state : List[dict]:</text><ellipse cx="72" cy="217.8359" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="89" x="81" y="222.2549">heroes : List[Hero]</text><ellipse cx="72" cy="231.6719" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="116" x="81" y="236.0908">monsters : List[Monster]</text><line style="stroke:#A80036;stroke-width:1.0;" x1="62" x2="202" y1="242.5078" y2="242.5078"/><ellipse cx="72" cy="253.5078" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="55" x="81" y="257.9268">add() : void</text><ellipse cx="72" cy="267.3438" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="81" y="271.7627">remove() : void</text><ellipse cx="72" cy="281.1797" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="56" x="81" y="285.5986">start(): void</text><ellipse cx="72" cy="295.0156" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="55" x="81" y="299.4346">stop(): void</text><ellipse cx="72" cy="308.8516" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="81" y="313.2705">record_attack() : void</text><!--MD5=[c784a3d6f42f164100fa98b1da25868a]
+class Combatant--><rect codeline="20" fill="#FEFECE" filter="url(#fyskiiu5hd8u2)" height="144.8516" id="Combatant" style="stroke:#A80036;stroke-width:1.5;" width="94" x="296" y="168"/><ellipse cx="311" cy="184" fill="#A9DCDF" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M313.1875,185.7656 L309.0469,185.7656 L308.625,186.7969 L309.0469,186.7969 Q309.6563,186.7969 309.9219,187.0313 Q310.1875,187.2656 310.1875,187.6563 Q310.1875,188.0313 309.9219,188.2656 Q309.6563,188.5 309.0469,188.5 L306.75,188.5 Q306.1406,188.5 305.8906,188.2656 Q305.625,188.0313 305.625,187.6406 Q305.625,187.2656 305.9063,187.0313 Q306.1719,186.7813 306.7969,186.7969 L309.4688,180.1406 L308.3594,180.1406 Q307.75,180.1406 307.4844,179.9063 Q307.2188,179.6719 307.2188,179.2813 Q307.2188,178.9063 307.4844,178.6719 Q307.75,178.4375 308.3594,178.4375 L312.0313,178.4375 L315.4219,186.7969 Q316.0156,186.7969 316.2031,186.9375 Q316.5938,187.2031 316.5938,187.6563 Q316.5938,188.0313 316.3281,188.2656 Q316.0781,188.5 315.4688,188.5 L313.1719,188.5 Q312.5625,188.5 312.2969,188.2656 Q312.0313,188.0313 312.0313,187.6406 Q312.0313,187.2656 312.2969,187.0313 Q312.5625,186.7969 313.1719,186.7969 L313.5938,186.7969 L313.1875,185.7656 Z M312.4688,184.0625 L311.1094,180.6875 L309.7344,184.0625 L312.4688,184.0625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="62" x="325" y="188.9102">Combatant</text><line style="stroke:#A80036;stroke-width:1.5;" x1="297" x2="389" y1="200" y2="200"/><ellipse cx="307" cy="211" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="50" x="316" y="215.4189">state : dict</text><ellipse cx="307" cy="224.8359" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="49" x="316" y="229.2549">kind : type</text><ellipse cx="307" cy="238.6719" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="48" x="316" y="243.0908">name : str</text><ellipse cx="307" cy="252.5078" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="49" x="316" y="256.9268">health : int</text><ellipse cx="307" cy="266.3438" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="58" x="316" y="270.7627">damage : int</text><ellipse cx="307" cy="280.1797" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="65" x="316" y="284.5986">interval : float</text><line style="stroke:#A80036;stroke-width:1.5;" x1="297" x2="389" y1="291.0156" y2="291.0156"/><ellipse cx="307" cy="302.0156" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="66" x="316" y="306.4346">attack() : void</text><!--MD5=[666ab4d123c8a4db535fefed801ea066]
+class Hero--><rect codeline="31" fill="#FEFECE" filter="url(#fyskiiu5hd8u2)" height="131.0156" id="Hero" style="stroke:#A80036;stroke-width:1.5;" width="92" x="201" y="405"/><ellipse cx="230.85" cy="421" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M233.6156,416.875 Q233.7719,416.6563 233.9594,416.5469 Q234.1469,416.4375 234.3656,416.4375 Q234.7406,416.4375 234.975,416.7031 Q235.2094,416.9531 235.2094,417.5625 L235.2094,419.0156 Q235.2094,419.625 234.975,419.8906 Q234.7406,420.1563 234.3656,420.1563 Q234.0219,420.1563 233.8188,419.9531 Q233.6156,419.7656 233.5063,419.25 Q233.4594,418.8906 233.2719,418.7031 Q232.9438,418.3281 232.3344,418.1094 Q231.725,417.8906 231.1,417.8906 Q230.3344,417.8906 229.6938,418.2188 Q229.0688,418.5469 228.5688,419.2969 Q228.0844,420.0469 228.0844,421.0781 L228.0844,422.1719 Q228.0844,423.4063 228.975,424.2344 Q229.8656,425.0469 231.4594,425.0469 Q232.3969,425.0469 233.0531,424.7969 Q233.4438,424.6406 233.8656,424.2031 Q234.1313,423.9375 234.2719,423.8594 Q234.4281,423.7813 234.6313,423.7813 Q234.9594,423.7813 235.2094,424.0469 Q235.475,424.2969 235.475,424.6406 Q235.475,424.9844 235.1313,425.3906 Q234.6313,425.9688 233.8344,426.2969 Q232.7563,426.75 231.4594,426.75 Q229.9438,426.75 228.7406,426.125 Q227.7563,425.625 227.0688,424.5625 Q226.3813,423.4844 226.3813,422.2031 L226.3813,421.0469 Q226.3813,419.7188 226.9906,418.5781 Q227.6156,417.4219 228.7094,416.8125 Q229.8031,416.1875 231.0375,416.1875 Q231.7719,416.1875 232.4125,416.3594 Q233.0688,416.5156 233.6156,416.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="27" x="248.15" y="425.9102">Hero</text><line style="stroke:#A80036;stroke-width:1.5;" x1="202" x2="292" y1="437" y2="437"/><ellipse cx="212" cy="448" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="50" x="221" y="452.4189">state : dict</text><ellipse cx="212" cy="461.8359" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="49" x="221" y="466.2549">kind : type</text><ellipse cx="212" cy="475.6719" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="48" x="221" y="480.0908">name : str</text><ellipse cx="212" cy="489.5078" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="49" x="221" y="493.9268">health : int</text><ellipse cx="212" cy="503.3438" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="58" x="221" y="507.7627">damage : int</text><line style="stroke:#A80036;stroke-width:1.5;" x1="202" x2="292" y1="514.1797" y2="514.1797"/><ellipse cx="212" cy="525.1797" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="66" x="221" y="529.5986">attack() : void</text><!--MD5=[d2c4278637bdc93ab6ebd71329cfa63c]
+class Monster--><rect codeline="41" fill="#FEFECE" filter="url(#fyskiiu5hd8u2)" height="144.8516" id="Monster" style="stroke:#A80036;stroke-width:1.5;" width="92" x="328" y="398"/><ellipse cx="350.2" cy="414" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M352.9656,409.875 Q353.1219,409.6563 353.3094,409.5469 Q353.4969,409.4375 353.7156,409.4375 Q354.0906,409.4375 354.325,409.7031 Q354.5594,409.9531 354.5594,410.5625 L354.5594,412.0156 Q354.5594,412.625 354.325,412.8906 Q354.0906,413.1563 353.7156,413.1563 Q353.3719,413.1563 353.1688,412.9531 Q352.9656,412.7656 352.8563,412.25 Q352.8094,411.8906 352.6219,411.7031 Q352.2938,411.3281 351.6844,411.1094 Q351.075,410.8906 350.45,410.8906 Q349.6844,410.8906 349.0438,411.2188 Q348.4188,411.5469 347.9188,412.2969 Q347.4344,413.0469 347.4344,414.0781 L347.4344,415.1719 Q347.4344,416.4063 348.325,417.2344 Q349.2156,418.0469 350.8094,418.0469 Q351.7469,418.0469 352.4031,417.7969 Q352.7938,417.6406 353.2156,417.2031 Q353.4813,416.9375 353.6219,416.8594 Q353.7781,416.7813 353.9813,416.7813 Q354.3094,416.7813 354.5594,417.0469 Q354.825,417.2969 354.825,417.6406 Q354.825,417.9844 354.4813,418.3906 Q353.9813,418.9688 353.1844,419.2969 Q352.1063,419.75 350.8094,419.75 Q349.2938,419.75 348.0906,419.125 Q347.1063,418.625 346.4188,417.5625 Q345.7313,416.4844 345.7313,415.2031 L345.7313,414.0469 Q345.7313,412.7188 346.3406,411.5781 Q346.9656,410.4219 348.0594,409.8125 Q349.1531,409.1875 350.3875,409.1875 Q351.1219,409.1875 351.7625,409.3594 Q352.4188,409.5156 352.9656,409.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="44" x="365.8" y="418.9102">Monster</text><line style="stroke:#A80036;stroke-width:1.5;" x1="329" x2="419" y1="430" y2="430"/><ellipse cx="339" cy="441" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="50" x="348" y="445.4189">state : dict</text><ellipse cx="339" cy="454.8359" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="49" x="348" y="459.2549">kind : type</text><ellipse cx="339" cy="468.6719" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="48" x="348" y="473.0908">name : str</text><ellipse cx="339" cy="482.5078" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="49" x="348" y="486.9268">health : int</text><ellipse cx="339" cy="496.3438" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="58" x="348" y="500.7627">damage : int</text><ellipse cx="339" cy="510.1797" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="65" x="348" y="514.5986">interval : float</text><line style="stroke:#A80036;stroke-width:1.5;" x1="329" x2="419" y1="521.0156" y2="521.0156"/><ellipse cx="339" cy="532.0156" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="66" x="348" y="536.4346">attack() : void</text><!--MD5=[77668392e423fee4515f0e88e4ca0ebb]
+class MessageQueue--><rect codeline="52" fill="#FEFECE" filter="url(#fyskiiu5hd8u2)" height="103.3438" id="MessageQueue" style="stroke:#A80036;stroke-width:1.5;" width="120" x="13" y="419"/><ellipse cx="28" cy="435" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M30.7656,430.875 Q30.9219,430.6563 31.1094,430.5469 Q31.2969,430.4375 31.5156,430.4375 Q31.8906,430.4375 32.125,430.7031 Q32.3594,430.9531 32.3594,431.5625 L32.3594,433.0156 Q32.3594,433.625 32.125,433.8906 Q31.8906,434.1563 31.5156,434.1563 Q31.1719,434.1563 30.9688,433.9531 Q30.7656,433.7656 30.6563,433.25 Q30.6094,432.8906 30.4219,432.7031 Q30.0938,432.3281 29.4844,432.1094 Q28.875,431.8906 28.25,431.8906 Q27.4844,431.8906 26.8438,432.2188 Q26.2188,432.5469 25.7188,433.2969 Q25.2344,434.0469 25.2344,435.0781 L25.2344,436.1719 Q25.2344,437.4063 26.125,438.2344 Q27.0156,439.0469 28.6094,439.0469 Q29.5469,439.0469 30.2031,438.7969 Q30.5938,438.6406 31.0156,438.2031 Q31.2813,437.9375 31.4219,437.8594 Q31.5781,437.7813 31.7813,437.7813 Q32.1094,437.7813 32.3594,438.0469 Q32.625,438.2969 32.625,438.6406 Q32.625,438.9844 32.2813,439.3906 Q31.7813,439.9688 30.9844,440.2969 Q29.9063,440.75 28.6094,440.75 Q27.0938,440.75 25.8906,440.125 Q24.9063,439.625 24.2188,438.5625 Q23.5313,437.4844 23.5313,436.2031 L23.5313,435.0469 Q23.5313,433.7188 24.1406,432.5781 Q24.7656,431.4219 25.8594,430.8125 Q26.9531,430.1875 28.1875,430.1875 Q28.9219,430.1875 29.5625,430.3594 Q30.2188,430.5156 30.7656,430.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="88" x="42" y="439.9102">MessageQueue</text><line style="stroke:#A80036;stroke-width:1.5;" x1="14" x2="132" y1="451" y2="451"/><ellipse cx="24" cy="462" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="54" x="33" y="466.4189">silent : bool</text><line style="stroke:#A80036;stroke-width:1.5;" x1="14" x2="132" y1="472.8359" y2="472.8359"/><ellipse cx="24" cy="483.8359" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="67" x="33" y="488.2549">queue() : void</text><ellipse cx="24" cy="497.6719" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="61" x="33" y="502.0908">flush() : void</text><ellipse cx="24" cy="511.5078" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="58" x="33" y="515.9268">print() : void</text><!--MD5=[a5d6fecb3092365a42159261ad0eb2cd]
+class CombatantDict--><rect codeline="61" fill="#FEFECE" filter="url(#fyskiiu5hd8u2)" height="75.6719" id="CombatantDict" style="stroke:#A80036;stroke-width:1.5;" width="114" x="286" y="7"/><ellipse cx="301" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M303.7656,18.875 Q303.9219,18.6563 304.1094,18.5469 Q304.2969,18.4375 304.5156,18.4375 Q304.8906,18.4375 305.125,18.7031 Q305.3594,18.9531 305.3594,19.5625 L305.3594,21.0156 Q305.3594,21.625 305.125,21.8906 Q304.8906,22.1563 304.5156,22.1563 Q304.1719,22.1563 303.9688,21.9531 Q303.7656,21.7656 303.6563,21.25 Q303.6094,20.8906 303.4219,20.7031 Q303.0938,20.3281 302.4844,20.1094 Q301.875,19.8906 301.25,19.8906 Q300.4844,19.8906 299.8438,20.2188 Q299.2188,20.5469 298.7188,21.2969 Q298.2344,22.0469 298.2344,23.0781 L298.2344,24.1719 Q298.2344,25.4063 299.125,26.2344 Q300.0156,27.0469 301.6094,27.0469 Q302.5469,27.0469 303.2031,26.7969 Q303.5938,26.6406 304.0156,26.2031 Q304.2813,25.9375 304.4219,25.8594 Q304.5781,25.7813 304.7813,25.7813 Q305.1094,25.7813 305.3594,26.0469 Q305.625,26.2969 305.625,26.6406 Q305.625,26.9844 305.2813,27.3906 Q304.7813,27.9688 303.9844,28.2969 Q302.9063,28.75 301.6094,28.75 Q300.0938,28.75 298.8906,28.125 Q297.9063,27.625 297.2188,26.5625 Q296.5313,25.4844 296.5313,24.2031 L296.5313,23.0469 Q296.5313,21.7188 297.1406,20.5781 Q297.7656,19.4219 298.8594,18.8125 Q299.9531,18.1875 301.1875,18.1875 Q301.9219,18.1875 302.5625,18.3594 Q303.2188,18.5156 303.7656,18.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="82" x="315" y="27.9102">CombatantDict</text><line style="stroke:#A80036;stroke-width:1.5;" x1="287" x2="399" y1="39" y2="39"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="294" y="47"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="56" x="306" y="54.4189">__items: list</text><line style="stroke:#A80036;stroke-width:1.5;" x1="287" x2="399" y1="60.8359" y2="60.8359"/><ellipse cx="297" cy="71.8359" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="45" x="306" y="76.2549">get() : list</text><!--MD5=[a104536207c4c9db927eb0316ba54c19]
+link Combatant to Monster--><path codeline="67" d="M352.72,313.02 C356.17,338.36 360.06,366.97 363.56,392.73 " fill="none" id="Combatant-to-Monster" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="364.26,397.85,367.0158,388.3946,363.5889,392.8952,359.0882,389.4683,364.26,397.85" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="360" y="364.4951">implement</text><!--MD5=[0b932ba70ff525d6d8e0081bf618280d]
+link Combatant to Hero--><path codeline="68" d="M304.9,313.21 C298.95,325.36 293.1,337.94 288,350 C281.31,365.84 274.87,383.18 269.16,399.62 " fill="none" id="Combatant-to-Hero" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="267.41,404.69,274.1227,397.4831,269.0382,399.9625,266.5588,394.878,267.41,404.69" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="289" y="364.4951">implement</text><!--MD5=[aff6df2a089a8c37d60d72f60a7b708e]
+link CombatantDict to Combatant--><path codeline="70" d="M343,83.31 C343,105.85 343,135.41 343,162.75 " fill="none" id="CombatantDict-to-Combatant" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="343,167.83,347,158.83,343,162.83,339,158.83,343,167.83" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[063b11e67b39852f063c07c1aa3fda6f]
+link Guardian to Arena--><path codeline="72" d="M69.04,83.31 C77.37,103.99 88.09,130.58 98.32,155.94 " fill="none" id="Guardian-to-Arena" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="100.22,160.66,100.5548,150.8168,98.3458,156.0246,93.1381,153.8156,100.22,160.66" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="88" y="127.4951">subscribe</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="63.8792" y="104.2399">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="89.9676" y="150.088">1</text><!--MD5=[e0ca5197388e8330436dbb0544a06224]
+link Arena to Combatant--><path codeline="73" d="M215.14,240.5 C215.14,240.5 261.93,240.5 282.6,240.5 " fill="none" id="Arena-Combatant" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="295.72,240.5,286.72,236.5,290.72,240.5,286.72,244.5,295.72,240.5" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="290.72" x2="282.72" y1="240.5" y2="240.5"/><polygon fill="#A80036" points="203.14,240.5,209.14,244.5,215.14,240.5,209.14,236.5,203.14,240.5" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="221.5" y="233.9951">subscribe</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="210.8372" y="237.2044">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="280.9443" y="236.8084">n</text><!--MD5=[f705475baf5a55cfafaed5ce6bef277f]
+link Arena to MessageQueue--><path codeline="75" d="M111.61,320.28 C103.65,351.06 94.7,385.64 87.43,413.75 " fill="none" id="Arena-to-MessageQueue" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="86.09,418.92,92.2286,411.2182,87.3498,414.0813,84.4866,409.2025,86.09,418.92" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="102.6316" y="341.0719">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="80.4386" y="408.0372">1</text><!--MD5=[68ef2c044524c31254a40996491f8dda]
+link Guardian to MessageQueue--><path codeline="76" d="M49.53,83.23 C47.06,105.71 44.24,134.96 43,161 C39.63,231.59 36.01,249.68 43,320 C46.1,351.25 52.77,385.63 59.04,413.54 " fill="none" id="Guardian-to-MessageQueue" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="60.2,418.68,62.0925,409.0147,59.0851,413.8059,54.2939,410.7985,60.2,418.68" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="41.2598" y="104.1472">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="51.0097" y="408.1373">1</text><!--MD5=[a6c5dab2540388dcdfd5c51979a56989]
+@startuml
+class Guardian
+{
+   +arena : Arena
+   +watch() : void
+}
+
+class Arena
+{
+   +state : List[dict]: 
+   +heroes : List[Hero]
+   +monsters : List[Monster]
+   - -
+   +add() : void
+   +remove() : void
+   +start(): void
+   +stop(): void
+   +record_attack() : void
+}
+
+abstract class Combatant
+{
+   +state : dict
+   +kind : type
+   +name : str
+   +health : int
+   +damage : int
+   +interval : float
+   +attack() : void
+}
+
+class Hero
+{
+   +state : dict
+   +kind : type
+   +name : str
+   +health : int
+   +damage : int
+   +attack() : void
+}
+
+class Monster
+{
+   +state : dict
+   +kind : type
+   +name : str
+   +health : int
+   +damage : int
+   +interval : float
+   +attack() : void
+}
+
+class MessageQueue
+{
+   +silent : bool
+
+   +queue() : void
+   +flush() : void
+   +print() : void
+}
+
+class CombatantDict
+{
+   -__items: list
+   +get() : list
+}
+
+Combatant - -> Monster: implement
+Combatant - -> Hero: implement
+
+CombatantDict - -> Combatant
+
+Guardian "1" - -> "1" Arena : subscribe
+Arena "1" *-> "n" Combatant : subscribe
+
+Arena "1" - -> "1" MessageQueue
+Guardian "1" - -> "1" MessageQueue
+@enduml
+
+PlantUML version 1.2021.12(Tue Oct 05 18:01:58 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: de
+Country: DE
+--></g></svg></p>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

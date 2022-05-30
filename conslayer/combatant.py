@@ -13,6 +13,7 @@ __email__ = 'patrick.michl@gmail.com'
 __authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
 
 from typing import Any, List, Optional
+from abc import ABC
 
 import reactivex as rx
 import conslayer
@@ -21,11 +22,11 @@ import conslayer
 # Combatant
 #
 
-class Combatant(rx.subject.BehaviorSubject):
-    """Combatant class.
+class Combatant(rx.subject.BehaviorSubject, ABC):
+    """Combatant base class.
 
-    Stores individual combatant states and propagates state changes by using the following
-    design patterns:
+    Abstract base class for all combatant classes. Stores individual combatant
+    states and propagates state changes by using the following design patterns:
         (1) Behaviour Subject pattern for concurrent observability
         (2) State pattern for combatant state determination
 
@@ -34,7 +35,7 @@ class Combatant(rx.subject.BehaviorSubject):
         name (str): Name of the combatant
         health (int): Health of the combatant
         damage (int): Health damage points an attack of the combatant causes
-        interval (Optional[float], optional): Interval between attacks in seconds
+        interval (float, optional): Interval between attacks in seconds
 
     Attributes:
         kind (readonly, type): Kind of the combatant (conslayer.Hero or conslayer.Monster)
@@ -43,6 +44,10 @@ class Combatant(rx.subject.BehaviorSubject):
         damage (readonly, int): Health damage points an attack of the combatant causes
         interval (readonly, float): Interval between attacks in seconds
         state (readonly, dict): Current state of the combatant
+
+    Raises:
+        TypeError: If any of the arguments has the wrong type
+        ValueError: If any of the arguments has an invalid value
 
     """
 
@@ -150,8 +155,8 @@ class Combatant(rx.subject.BehaviorSubject):
 class Monster(Combatant):
     """Monster class.
 
-    Combatant subclass used to store individual monster states and
-    propagate state changes by using the following design patterns:
+    Combatant class used to store individual monster states and propagate
+    state changes by using the following design patterns:
         (1) Behaviour Subject pattern for concurrent observability
         (2) State pattern for monster state determination
 
@@ -167,12 +172,15 @@ class Monster(Combatant):
         damage (int, readonly): Health damage points an attack of the monster causes
         interval (float, readonly): Interval between attacks in seconds
 
+    Raises:
+        ValueError: Monster name cannot be 'hero'
+
     """
     def __init__(self, name: str, health: int, damage: int, interval: int) -> None:
 
         # Check argument values
         if name == "hero":
-            raise Exception("Monster name cannot be 'hero'")
+            raise ValueError("Monster name cannot be 'hero'")
 
         super().__init__(Monster, name, health, damage, interval)
 
@@ -183,8 +191,8 @@ class Monster(Combatant):
 class Hero(Combatant):
     """Hero class.
 
-    Combatant subclass used to store individual heroes states and
-    propagate state changes by using the following design patterns:
+    Combatant class used to store individual heroes states and propagate
+    state changes by using the following design patterns:
         (1) Behaviour Subject pattern for concurrent observability
         (2) State pattern for hero state determination
 
